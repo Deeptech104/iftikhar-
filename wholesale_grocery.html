@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IFTIKHAR Holesale </title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1a6b3c;
+    --green-light: #e8f5ee;
+    --green-mid: #2d8a52;
+    --green-dark: #0f4525;
+    --amber: #e8a020;
+    --amber-light: #fdf3e0;
+    --text: #1a1a1a;
+    --text-muted: #6b7280;
+    --border: #e5e7eb;
+    --bg: #f9fafb;
+    --white: #ffffff;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --shadow-hover: 0 8px 28px rgba(0,0,0,0.13);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    
+  }
+
+  /* NAV */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 40px; height: 40px; background: var(--green);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .logo-text { display: flex; flex-direction: column; }
+  .logo-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: var(--green-dark); line-height: 1.1;
+    font-weight: 700;
+  }
+  .logo-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 0.5px; }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+  .cart-btn {
+    background: var(--green); color: white; border: none;
+    padding: 0.5rem 1.2rem; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    transition: background 0.2s;
+  }
+  .cart-btn:hover { background: var(--green-dark); }
+  .cart-count {
+    background: var(--amber); color: white;
+    width: 20px; height: 20px; border-radius: 50%;
+    font-size: 11px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .search-bar {
+    display: flex; align-items: center;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0 12px;
+    gap: 6px;
+  }
+  .search-bar input {
+    border: none; background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; padding: 8px 0; outline: none; width: 200px;
+  }
+  .search-bar svg { color: var(--text-muted); flex-shrink: 0; }
+
+  /* HERO */
+  .hero {
+    background-image: url(https://fmfoods.pk/wp-content/uploads/2022/03/7-product-post-1-1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;  
+    padding: 4rem 2rem;
+    text-align: center; color: rgb(255, 255, 255);
+    position: relative; overflow: hidden;
+
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-content { position: relative; max-width: 700px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white; font-size: 12px; font-weight: 500;
+    padding: 4px 14px; border-radius: 20px;
+    margin-bottom: 1.2rem; letter-spacing: 0.5px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700; line-height: 1.2;
+    margin-bottom: 1rem;
+
+  }
+  .hero p {
+    font-size: 16px; opacity: 0.85; line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  .hero-stats {
+    display: flex; justify-content: center; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px; font-weight: 700; display: block;
+  }
+  .hero-stat-label { font-size: 13px; opacity: 0.7; }
+
+  /* CATEGORIES */
+  .section { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .section-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; color: var(--green-dark);
+  }
+  .cats {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem;
+  }
+  .cat-btn {
+    padding: 7px 18px; border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--white); color: var(--text-muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .cat-btn:hover, .cat-btn.active {
+    background: var(--green); color: white; border-color: var(--green);
+  }
+
+  /* PRODUCT GRID */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+  }
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .product-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+  .product-img {
+    height: 160px;
+    background: var(--green-light);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .badge-wholesale {
+    position: absolute; top: 10px; left: 10px;
+    background: var(--amber); color: white;
+    font-size: 10px; font-weight: 600;
+    padding: 3px 8px; border-radius: 4px; letter-spacing: 0.3px;
+  }
+  .product-body { padding: 14px; flex: 1; display: flex; flex-direction: column; }
+  .product-name {
+    font-size: 15px; font-weight: 600; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .product-unit { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+  .product-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--green);
+    font-weight: 600; margin-bottom: 4px;
+  }
+  .product-price span { font-size: 13px; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+  .product-min { font-size: 11px; color: var(--text-muted); margin-bottom: 12px; }
+  .qty-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .qty-btn {
+    width: 30px; height: 30px; border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg); cursor: pointer;
+    font-size: 16px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+  }
+  .qty-btn:hover { background: var(--green-light); border-color: var(--green); color: var(--green); }
+  .qty-display {
+    width: 40px; text-align: center;
+    font-size: 14px; font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px;
+  }
+  .add-btn {
+    width: 100%; padding: 9px;
+    background: var(--green); color: white;
+    border: none; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+    margin-top: auto;
+  }
+  .add-btn:hover { background: var(--green-dark); }
+  .add-btn.added { background: var(--amber); }
+
+  /* CART SIDEBAR */
+  .cart-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 200; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .cart-overlay.open { opacity: 1; pointer-events: all; }
+  .cart-sidebar {
+    position: fixed; right: 0; top: 0; bottom: 0;
+    width: 420px; max-width: 95vw;
+    background: var(--white);
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    display: flex; flex-direction: column;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.12);
+  }
+  .cart-sidebar.open { transform: translateX(0); }
+  .cart-header {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cart-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; color: var(--green-dark);
+  }
+  .close-btn {
+    background: var(--bg); border: none; cursor: pointer;
+    width: 32px; height: 32px; border-radius: 6px;
+    font-size: 18px; display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); transition: background 0.15s;
+  }
+  .close-btn:hover { background: var(--border); }
+  .cart-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+  .cart-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .cart-item-icon { font-size: 28px; flex-shrink: 0; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 14px; font-weight: 600; }
+  .cart-item-sub { font-size: 12px; color: var(--text-muted); }
+  .cart-item-price { font-weight: 600; color: var(--green); font-size: 15px; }
+  .cart-item-remove {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-muted); font-size: 16px;
+    padding: 4px; border-radius: 4px;
+    transition: color 0.15s;
+  }
+  .cart-item-remove:hover { color: #dc2626; }
+  .cart-empty {
+    text-align: center; padding: 3rem 1rem;
+    color: var(--text-muted); font-size: 15px;
+  }
+  .cart-empty-icon { font-size: 48px; margin-bottom: 1rem; }
+  .cart-footer {
+    padding: 1.2rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .cart-total-row {
+    display: flex; justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .cart-total-label { font-size: 14px; color: var(--text-muted); }
+  .cart-total-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--green-dark); font-weight: 700;
+  }
+  .whatsapp-btn {
+    width: 100%; padding: 14px;
+    background: #25D366; color: white;
+    border: none; border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center;
+    justify-content: center; gap: 8px;
+    transition: background 0.2s;
+  }
+  .whatsapp-btn:hover { background: #1da851; }
+  .whatsapp-btn svg { flex-shrink: 0; }
+  .order-note {
+    margin-top: 10px;
+    font-size: 11px; color: var(--text-muted);
+    text-align: center; line-height: 1.5;
+  }
+
+  /* NAME MODAL */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 300; display: none;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--white); border-radius: 16px;
+    padding: 2rem; width: 380px; max-width: 90vw;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .modal h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; margin-bottom: 6px; color: var(--green-dark);
+  }
+  .modal p { font-size: 13px; color: var(--text-muted); margin-bottom: 1.2rem; }
+  .modal input, .modal textarea {
+    width: 100%; border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    margin-bottom: 10px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .modal input:focus, .modal textarea:focus { border-color: var(--green); }
+  .modal textarea { resize: vertical; min-height: 70px; }
+  .modal-actions { display: flex; gap: 10px; margin-top: 4px; }
+  .modal-cancel {
+    flex: 1; padding: 10px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 8px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    transition: background 0.15s;
+  }
+  .modal-cancel:hover { background: var(--border); }
+  .modal-send {
+    flex: 2; padding: 10px;
+    background: #25D366; color: white;
+    border: none; border-radius: 8px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    transition: background 0.2s;
+  }
+  .modal-send:hover { background: #1da851; }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-dark); color: rgba(255,255,255,0.7);
+    text-align: center; padding: 2rem;
+    font-size: 13px; margin-top: 3rem;
+  }
+  footer strong { color: white; }
+
+  @media (max-width: 600px) {
+    .nav-inner { padding: 0; }
+    .search-bar { display: none; }
+    .hero { padding: 2.5rem 1rem; }
+    .hero-stats { gap: 1.5rem; }
+    .section { padding: 2rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">🌿</div>
+      <div class="logo-text">
+        <span class="logo-name">IFTIKHAR</span>
+        <span class="logo-sub">WHOLESALE </span>
+      </div>
+    </a>
+    <div class="search-bar">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search products..." id="searchInput" oninput="filterProducts()">
+    </div>
+    <div class="nav-right">
+      <button class="cart-btn" onclick="toggleCart()">
+        🛒 Cart
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✦ Wholesale Prices — No Login Required</div>
+    <h1></h1>
+    <p>Order directly — no account needed. Select your items, place your order, and it goes straight to our WhatsApp.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">50+</span>
+        <span class="hero-stat-label">Products</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">0</span>
+        <span class="hero-stat-label">Hidden Fees</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">24hr</span>
+        <span class="hero-stat-label">Delivery</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS SECTION -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">Our Products</h2>
+    <span style="font-size:13px;color:var(--text-muted)" id="productCount"></span>
+  </div>
+
+  <!-- CATEGORY FILTERS -->
+  <div class="cats" id="catBtns"></div>
+
+  <!-- GRID -->
+  <div class="products-grid" id="productsGrid"></div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>📞 Orders via WhatsApp: <strong>+92 337 1291788</strong></p>
+  <p style="margin-top:6px">© 2025 Al-Barakah Wholesale Grocers · Karachi, Pakistan</p>
+</footer>
+
+<!-- CART OVERLAY -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h2>🛒 Your Order</h2>
+    <button class="close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total Amount</span>
+      <span class="cart-total-val" id="cartTotal">Rs. 0</span>
+    </div>
+    <button class="whatsapp-btn" onclick="showOrderModal()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Send Order via WhatsApp
+    </button>
+    <p class="order-note">No login needed · Your order goes directly to our WhatsApp number</p>
+  </div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-overlay" id="orderModal">
+  <div class="modal">
+    <h3>Complete Your Order</h3>
+    <p>We'll send your order details to WhatsApp. Please provide your name and address.</p>
+    <input type="text" id="custName" placeholder="Your Name *" />
+    <input type="text" id="custPhone" placeholder="Your Phone Number" />
+    <textarea id="custAddress" placeholder="Delivery Address *"></textarea>
+    <textarea id="custNote" placeholder="Any special instructions? (optional)" rows="2"></textarea>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-send" onclick="sendToWhatsApp()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Send to WhatsApp
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+const WHATSAPP_NUMBER = '923371291788';
+
+const products = [
+  { id:1,  name:'Basmati Rice',      emoji:'🍚', image:'mile2.jpeg', category:'Grains',    price:320,  unit:'per kg',   minOrder:'Min 10 kg bag',   wholesale:true },
+  { id:2,  name:'Wheat Flour (Atta)',emoji:'🌾', image:'mille1.jpeg', category:'Grains',    price:155,  unit:'per kg',   minOrder:'Min 20 kg bag',   wholesale:true },
+  { id:3,  name:'Maize Flour',       emoji:'🌽', image:'mille2.jpeg', category:'Grains',    price:120,  unit:'per kg',   minOrder:'Min 10 kg bag',   wholesale:false },
+  { id:4,  name:'Sunflower Oil',     emoji:'🫙', image:'mille4.jpeg', category:'Oils',      price:440,  unit:'per litre',minOrder:'Min 5 litres',    wholesale:true },
+  { id:5,  name:'Canola Oil',        emoji:'🫙', image:'WhatsApp Image 2026-06-04 at 7.51.34 PM.jpeg', category:'Oils',      price:390,  unit:'per litre',minOrder:'Min 5 litres',    wholesale:false },
+  { id:6,  name:'Desi Ghee',         emoji:'🧈', image:'mile2.jpeg', category:'Oils',      price:1850, unit:'per kg',   minOrder:'Min 2 kg',        wholesale:true },
+  { id:7,  name:'Red Lentils (Masoor)',emoji:'🫘',image:'mille1.jpeg',category:'Pulses',   price:280,  unit:'per kg',   minOrder:'Min 5 kg',        wholesale:false },
+  { id:8,  name:'Yellow Lentils (Moong)',emoji:'🫘',image:'mille2.jpeg',category:'Pulses', price:310,  unit:'per kg',   minOrder:'Min 5 kg',        wholesale:true },
+  { id:9,  name:'Chickpeas',         emoji:'🫘', image:'mille4.jpeg', category:'Pulses',    price:220,  unit:'per kg',   minOrder:'Min 5 kg',        wholesale:false },
+  { id:10, name:'Black Tea (Danedar)',emoji:'🍵',image:'WhatsApp Image 2026-06-04 at 7.51.34 PM.jpeg',category:'Beverages', price:1400, unit:'per kg',   minOrder:'Min 500g',        wholesale:true },
+  { id:11, name:'Green Tea',         emoji:'🍵', image:'mile2.jpeg', category:'Beverages', price:1200,  unit:'per kg',   minOrder:'Min 500g',        wholesale:false },
+  { id:12, name:'Powdered Milk',     emoji:'🥛', image:'mille1.jpeg', category:'Dairy',     price:850,  unit:'per kg',   minOrder:'Min 1 kg bag',    wholesale:true },
+  { id:13, name:'Sugar',             emoji:'🍬', image:'mille2.jpeg', category:'Sweeteners',price:145,  unit:'per kg',   minOrder:'Min 10 kg bag',   wholesale:false },
+  { id:14, name:'Rock Salt',         emoji:'🧂', image:'mille4.jpeg', category:'Spices',    price:80,   unit:'per kg',   minOrder:'Min 1 kg',        wholesale:false },
+  { id:15, name:'Red Chilli Powder', emoji:'🌶️', image:'WhatsApp Image 2026-06-04 at 7.51.34 PM.jpeg', category:'Spices',    price:450,  unit:'per kg',   minOrder:'Min 500g',        wholesale:true },
+  { id:16, name:'Turmeric Powder',   emoji:'🟡', image:'mile2.jpeg', category:'Spices',    price:380,  unit:'per kg',   minOrder:'Min 500g',        wholesale:false },
+  { id:17, name:'Cumin (Zeera)',     emoji:'🌿', image:'mille1.jpeg', category:'Spices',    price:900,  unit:'per kg',   minOrder:'Min 250g',        wholesale:true },
+  { id:18, name:'Coriander Powder',  emoji:'🌿', image:'mille2.jpeg', category:'Spices',    price:360,  unit:'per kg',   minOrder:'Min 500g',        wholesale:false },
+  { id:19, name:'Tomato Paste (Tin)',emoji:'🍅', image:'mille4.jpeg', category:'Canned',    price:120,  unit:'per tin',  minOrder:'Min 6 tins',      wholesale:true },
+  { id:20, name:'Chickpea Tin',      emoji:'🥫', image:'WhatsApp Image 2026-06-04 at 7.51.34 PM.jpeg', category:'Canned',    price:145,  unit:'per tin',  minOrder:'Min 6 tins',      wholesale:false },
+];
+
+let cart = {};
+let activeCategory = 'All';
+let searchQuery = '';
+
+function getCategories() {
+  const cats = ['All', ...new Set(products.map(p => p.category))];
+  return cats;
+}
+
+function renderCategoryBtns() {
+  const container = document.getElementById('catBtns');
+  container.innerHTML = getCategories().map(c =>
+    `<button class="cat-btn ${c === activeCategory ? 'active' : ''}" onclick="setCategory('${c}')">${c}</button>`
+  ).join('');
+}
+
+function setCategory(cat) {
+  activeCategory = cat;
+  renderCategoryBtns();
+  renderProducts();
+}
+
+function filterProducts() {
+  searchQuery = document.getElementById('searchInput').value.toLowerCase();
+  renderProducts();
+}
+
+function renderProducts() {
+  let filtered = products;
+  if (activeCategory !== 'All') filtered = filtered.filter(p => p.category === activeCategory);
+  if (searchQuery) filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery));
+
+  document.getElementById('productCount').textContent = `${filtered.length} product${filtered.length !== 1 ? 's' : ''}`;
+
+  const grid = document.getElementById('productsGrid');
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-muted)">No products found for "<strong>${searchQuery || activeCategory}</strong>"</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => {
+    const qty = cart[p.id] ? cart[p.id].qty : 1;
+    const inCart = !!cart[p.id];
+    return `
+    <div class="product-card" id="card-${p.id}">
+      <div class="product-img">
+        <img src="imges/${p.image}" alt="${p.name}" loading="lazy" />
+        ${p.wholesale ? '<span class="badge-wholesale">WHOLESALE</span>' : ''}
+      </div>
+      <div class="product-body">
+        <div class="product-name">${p.name}</div>
+        <div class="product-unit">${p.category}</div>
+        <div class="product-price">Rs. ${p.price.toLocaleString()} <span>${p.unit}</span></div>
+        <div class="product-min">${p.minOrder}</div>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="changeQty(${p.id}, -1)">−</button>
+          <input class="qty-display" type="number" min="1" value="${qty}" id="qty-${p.id}" onchange="setQty(${p.id}, this.value)">
+          <button class="qty-btn" onclick="changeQty(${p.id}, 1)">+</button>
+        </div>
+        <button class="add-btn ${inCart ? 'added' : ''}" onclick="addToCart(${p.id})" id="btn-${p.id}">
+          ${inCart ? '✓ In Cart — Update' : '+ Add to Cart'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function changeQty(id, delta) {
+  const input = document.getElementById(`qty-${id}`);
+  let val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  input.value = val;
+}
+
+function setQty(id, val) {
+  val = parseInt(val);
+  if (isNaN(val) || val < 1) document.getElementById(`qty-${id}`).value = 1;
+}
+
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  const qty = parseInt(document.getElementById(`qty-${id}`).value) || 1;
+  cart[id] = { ...product, qty };
+  updateCartCount();
+  const btn = document.getElementById(`btn-${id}`);
+  if (btn) { btn.textContent = '✓ In Cart — Update'; btn.classList.add('added'); }
+  renderCartItems();
+}
+
+function removeFromCart(id) {
+  delete cart[id];
+  updateCartCount();
+  renderProducts();
+  renderCartItems();
+}
+
+function updateCartCount() {
+  const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = total;
+}
+
+function renderCartItems() {
+  const items = Object.values(cart);
+  const container = document.getElementById('cartItems');
+  const footer = document.getElementById('cartFooter');
+
+  if (items.length === 0) {
+    container.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><p>Your cart is empty.<br>Add some products to get started.</p></div>`;
+    footer.style.display = 'none';
+    return;
+  }
+
+  footer.style.display = 'block';
+  let total = 0;
+  container.innerHTML = items.map(item => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+    return `
+    <div class="cart-item">
+      <span class="cart-item-icon">${item.emoji}</span>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-sub">${item.qty} × Rs. ${item.price.toLocaleString()} ${item.unit}</div>
+      </div>
+      <span class="cart-item-price">Rs. ${subtotal.toLocaleString()}</span>
+      <button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕</button>
+    </div>`;
+  }).join('');
+
+  document.getElementById('cartTotal').textContent = `Rs. ${total.toLocaleString()}`;
+}
+
+function toggleCart() {
+  document.getElementById('cartOverlay').classList.toggle('open');
+  document.getElementById('cartSidebar').classList.toggle('open');
+}
+
+function showOrderModal() {
+  if (Object.keys(cart).length === 0) { alert('Your cart is empty!'); return; }
+  document.getElementById('orderModal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('orderModal').classList.remove('show');
+}
+
+function sendToWhatsApp() {
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const address = document.getElementById('custAddress').value.trim();
+  const note = document.getElementById('custNote').value.trim();
+
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!address) { alert('Please enter your delivery address.'); return; }
+
+  const items = Object.values(cart);
+  let total = 0;
+  let orderLines = items.map(item => {
+    const subtotal = item.price * item.qty;
+    total += subtotal;
+    return `• ${item.name} — ${item.qty} × Rs. ${item.price.toLocaleString()} = Rs. ${subtotal.toLocaleString()}`;
+  }).join('\n');
+
+  let message = `🛒 *New Wholesale Order*\n\n`;
+  message += `👤 *Name:* ${name}\n`;
+  if (phone) message += `📞 *Phone:* ${phone}\n`;
+  message += `📍 *Address:* ${address}\n\n`;
+  message += `📦 *Order Details:*\n${orderLines}\n\n`;
+  message += `💰 *Total: Rs. ${total.toLocaleString()}*\n`;
+  if (note) message += `\n📝 *Note:* ${note}`;
+  message += `\n\n_(Sent from Al-Barakah Wholesale Website)_`;
+
+  const encoded = encodeURIComponent(message);
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
+  closeModal();
+}
+
+// INIT
+renderCategoryBtns();
+renderProducts();
+renderCartItems();
+</script>
+</body>
+</html>
