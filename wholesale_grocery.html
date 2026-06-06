@@ -511,26 +511,14 @@
 const WHATSAPP_NUMBER = '923451627807';
 
 const products = [
-  { id:1,  name:'Basmati Rice',      emoji:'🍚', image:'mile2.jpeg', category:'Grains',    price:320,  unit:'per kg',   minOrder:'Min 10 kg bag',   wholesale:true },
-  { id:2,  name:'Wheat Flour (Atta)',emoji:'🌾', image:'mille1.jpeg', category:'Grains',    price:155,  unit:'per kg',   minOrder:'Min 20 kg bag',   wholesale:true },
-  { id:3,  name:'Maize Flour',       emoji:'🌽', image:'mille2.jpeg', category:'Grains',    price:120,  unit:'per kg',   minOrder:'Min 10 kg bag',   wholesale:false },
-  { id:4,  name:'Sunflower Oil',     emoji:'🫙', image:'mille4.jpeg', category:'Oils',      price:440,  unit:'per litre',minOrder:'Min 5 litres',    wholesale:true },
-  { id:5,  name:'Canola Oil',        emoji:'🫙', image:'WhatsApp Image 2026-06-04 at 7.51.34 PM.jpeg', category:'Oils',      price:390,  unit:'per litre',minOrder:'Min 5 litres',    wholesale:false },
-  { id:6,  name:'Desi Ghee',         emoji:'🧈', image:'mile2.jpeg', category:'Oils',      price:1850, unit:'per kg',   minOrder:'Min 2 kg',        wholesale:true },
-  { id:7,  name:'Red Lentils (Masoor)',emoji:'🫘',image:'mille1.jpeg',category:'Pulses',   price:280,  unit:'per kg',   minOrder:'Min 5 kg',        wholesale:false },
-  { id:8,  name:'Yellow Lentils (Moong)',emoji:'🫘',image:'mille2.jpeg',category:'Pulses', price:310,  unit:'per kg',   minOrder:'Min 5 kg',        wholesale:true },
-  { id:9,  name:'Chickpeas',         emoji:'🫘', image:'mille4.jpeg', category:'Pulses',    price:220,  unit:'per kg',   minOrder:'Min 5 kg',        wholesale:false },
-  { id:10, name:'Black Tea (Danedar)',emoji:'🍵',image:'WhatsApp Image 2026-06-04 at 7.51.34 PM.jpeg',category:'Beverages', price:1400, unit:'per kg',   minOrder:'Min 500g',        wholesale:true },
-  { id:11, name:'Green Tea',         emoji:'🍵', image:'mile2.jpeg', category:'Beverages', price:1200,  unit:'per kg',   minOrder:'Min 500g',        wholesale:false },
-  { id:12, name:'Powdered Milk',     emoji:'🥛', image:'mille1.jpeg', category:'Dairy',     price:850,  unit:'per kg',   minOrder:'Min 1 kg bag',    wholesale:true },
-  { id:13, name:'Sugar',             emoji:'🍬', image:'mille2.jpeg', category:'Sweeteners',price:145,  unit:'per kg',   minOrder:'Min 10 kg bag',   wholesale:false },
-  { id:14, name:'Rock Salt',         emoji:'🧂', image:'mille4.jpeg', category:'Spices',    price:80,   unit:'per kg',   minOrder:'Min 1 kg',        wholesale:false },
-  { id:15, name:'Red Chilli Powder', emoji:'🌶️', image:'WhatsApp Image 2026-06-04 at 7.51.34 PM.jpeg', category:'Spices',    price:450,  unit:'per kg',   minOrder:'Min 500g',        wholesale:true },
-  { id:16, name:'Turmeric Powder',   emoji:'🟡', image:'mile2.jpeg', category:'Spices',    price:380,  unit:'per kg',   minOrder:'Min 500g',        wholesale:false },
-  { id:17, name:'Cumin (Zeera)',     emoji:'🌿', image:'mille1.jpeg', category:'Spices',    price:900,  unit:'per kg',   minOrder:'Min 250g',        wholesale:true },
-  { id:18, name:'Coriander Powder',  emoji:'🌿', image:'mille2.jpeg', category:'Spices',    price:360,  unit:'per kg',   minOrder:'Min 500g',        wholesale:false },
-  { id:19, name:'Tomato Paste (Tin)',emoji:'🍅', image:'mille4.jpeg', category:'Canned',    price:120,  unit:'per tin',  minOrder:'Min 6 tins',      wholesale:true },
-  { id:20, name:'Chickpea Tin',      emoji:'🥫', image:'WhatsApp Image 2026-06-04 at 7.51.34 PM.jpeg', category:'Canned',    price:145,  unit:'per tin',  minOrder:'Min 6 tins',      wholesale:false },
+  { id: 1, name: '1', emoji: '🧺', image: '1.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
+  { id: 2, name: '2', emoji: '🧺', image: '2.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
+  { id: 3, name: '3', emoji: '🧺', image: '3.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
+  { id: 4, name: 'Aaloo Bhujia', emoji: '🥔', image: 'Aaloo Bhujia.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 5, name: 'Chathkara papdi', emoji: '🥨', image: 'Chathkara papdi.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 6, name: 'Daal Mong', emoji: '🫘', image: 'Daal Mong.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 7, name: 'Daal Moth', emoji: '🫘', image: 'Daal Moth.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 8, name: 'Nimco Mix', emoji: '🌿', image: 'Nimco Mix.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
 ];
 
 let cart = {};
@@ -703,7 +691,7 @@ function sendToWhatsApp() {
   message += `📦 *Order Details:*\n${orderLines}\n\n`;
   message += `💰 *Total: Rs. ${total.toLocaleString()}*\n`;
   if (note) message += `\n📝 *Note:* ${note}`;
-  message += `\n\n_(Sent from Al-Barakah Wholesale Website)_`;
+  message += `\n\n_(Sent from IFTIKHAR Holesale Wholesale Website)_`;
 
   const encoded = encodeURIComponent(message);
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
