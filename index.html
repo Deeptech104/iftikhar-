@@ -195,6 +195,58 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    cursor: zoom-in;
+  }
+
+  /* IMAGE VIEWER */
+  .image-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .image-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .image-modal {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(920px, 95vw);
+    max-height: 90vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .image-modal img {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    background: #000;
+  }
+  .image-close {
+    position: absolute;
+    top: 12px; right: 12px;
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .image-close:hover {
+    background: rgba(255,255,255,0.18);
   }
   .badge-wholesale {
     position: absolute; top: 10px; left: 10px;
@@ -488,6 +540,14 @@
   </div>
 </div>
 
+<!-- IMAGE VIEWER OVERLAY -->
+<div class="image-overlay" id="imageOverlay" onclick="closeImageViewer()">
+  <div class="image-modal" onclick="event.stopPropagation()">
+    <button class="image-close" onclick="closeImageViewer()" aria-label="Close">✕</button>
+    <img id="imageViewer" src="" alt="Product image" />
+  </div>
+</div>
+
 <!-- ORDER MODAL -->
 <div class="modal-overlay" id="orderModal">
   <div class="modal">
@@ -511,14 +571,14 @@
 const WHATSAPP_NUMBER = '923451627807';
 
 const products = [
-  { id: 1, name: '1', emoji: '🧺', image: '1.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
-  { id: 2, name: '2', emoji: '🧺', image: '2.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
-  { id: 3, name: '3', emoji: '🧺', image: '3.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
-  { id: 4, name: 'Aaloo Bhujia', emoji: '🥔', image: 'Aaloo Bhujia.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
-  { id: 5, name: 'Chathkara papdi', emoji: '🥨', image: 'Chathkara papdi.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
-  { id: 6, name: 'Daal Mong', emoji: '🫘', image: 'Daal Mong.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
-  { id: 7, name: 'Daal Moth', emoji: '🫘', image: 'Daal Moth.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
-  { id: 8, name: 'Nimco Mix', emoji: '🌿', image: 'Nimco Mix.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 1, name: 'Red Daal Moth', image: '1.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
+  { id: 2, name: 'Green Daal Moth', image: '2.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
+  { id: 3, name: 'Mix Daal Moth', image: '3.jpeg', category: 'Products', price: 260, unit: '', minOrder: '', wholesale: true },
+  { id: 4, name: 'Aaloo Bhujia', image: 'Aaloo Bhujia.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 5, name: 'Chathkara papdi', image: 'Chathkara papdi.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 6, name: 'Daal Mong', image: 'Daal Mong.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 7, name: 'Daal Moth', image: 'Daal Moth.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
+  { id: 8, name: 'Nimco Mix', image: 'Nimco Mix.jpeg', category: 'Products', price: 90, unit: '', minOrder: '', wholesale: true },
 ];
 
 let cart = {};
@@ -567,7 +627,12 @@ function renderProducts() {
     return `
     <div class="product-card" id="card-${p.id}">
       <div class="product-img">
-        <img src="imges/${p.image}" alt="${p.name}" loading="lazy" />
+        <img
+          src="imges/${p.image}"
+          alt="${p.name}"
+          loading="lazy"
+          onclick="openImageViewer('imges/${p.image}', '${p.name.replace(/'/g, "&#39;")}')"
+        />
         ${p.wholesale ? '<span class="badge-wholesale">WHOLESALE</span>' : ''}
       </div>
       <div class="product-body">
@@ -640,7 +705,10 @@ function renderCartItems() {
     total += subtotal;
     return `
     <div class="cart-item">
-      <span class="cart-item-icon">${item.emoji}</span>
+      <span class="cart-item-icon">
+        <img src="imges/${item.image}" alt="${item.name}" style="width:36px;height:36px;object-fit:cover;border-radius:8px;" />
+      </span>
+
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-sub">${item.qty} × Rs. ${item.price.toLocaleString()} ${item.unit}</div>
@@ -665,6 +733,23 @@ function showOrderModal() {
 
 function closeModal() {
   document.getElementById('orderModal').classList.remove('show');
+}
+
+function openImageViewer(src, title) {
+  const overlay = document.getElementById('imageOverlay');
+  const imgEl = document.getElementById('imageViewer');
+  if (!overlay || !imgEl) return;
+  imgEl.src = src;
+  imgEl.alt = title || 'Product image';
+  overlay.classList.add('open');
+}
+
+function closeImageViewer() {
+  const overlay = document.getElementById('imageOverlay');
+  const imgEl = document.getElementById('imageViewer');
+  if (!overlay || !imgEl) return;
+  overlay.classList.remove('open');
+  imgEl.src = '';
 }
 
 function sendToWhatsApp() {
